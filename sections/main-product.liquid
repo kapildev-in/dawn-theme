@@ -7,12 +7,29 @@
 </div>
 
 {% if product.tags contains 'bestseller' %}
-
 <span style="background:gold; padding:4px 10px; font-weight:bold;"> Best Seller </span>
-
 {% else %}
+
+
 <p> Not a best seller </p>
 {% endif %}
+
+{%- comment -%} Topic 6: Liquid Filters {%- endcomment -%}
+
+<p class="topic6-price">
+Price: {{ product.price | money }}
+</p>
+
+<p class="topic6-description">
+Desciption: {{ product.description | strip_html | truncate: 120 }}
+</p>
+
+<p class="topic6-extras">
+Vendor: {{ product.vendor | upcase }} | 
+Type: {{ product.type | default: 'Not Set' | capitalize }}
+</p>
+
+
 
 <product-info
   id="MainProduct-{{ section.id }}"
