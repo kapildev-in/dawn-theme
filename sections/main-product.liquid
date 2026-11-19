@@ -30,6 +30,25 @@ Type: {{ product.type | default: 'Not Set' | capitalize }}
 </p>
 
 
+{%- comment -%} Topic 7: Variables {%- endcomment -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign compare_price = current_variant.compare_at_price -%}
+
+{%- if compare_price and compare_price > current_variant.price -%}
+  {%- assign saving = compare_price | minus: current_variant.price -%}
+  {%- assign percent = saving | times: 100.0 | divided_by: compare_price | round -%}
+
+  {%- capture saving_label -%}
+    You Save {{ percent }}% ({{ saving | money }})
+  {%- endcapture -%}
+
+  <p class="topic7-savings" style="background-color: #e63946; color: #ffffff; padding: 8px 14px; border-radius: 6px; display: inline-block; font-weight: bold;">
+  {{ saving_label }}
+</p>
+
+{%- endif -%}
+
+
 
 <product-info
   id="MainProduct-{{ section.id }}"
