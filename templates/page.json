@@ -6,9 +6,16 @@
         "padding_top": 28,
         "padding_bottom": 28
       }
+    },
+    "my-note": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<h2> Hello from page.json </h2>"
+
+      }
     }
   },
   "order": [
-    "main"
+    "main", "my-note"
   ]
 }
